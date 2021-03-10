@@ -1,4 +1,5 @@
 // replaceText(document.body)
+let isClicked = false;
 
 function replaceText(element) {
     if(element.hasChildNodes()) {
@@ -16,11 +17,29 @@ function replaceText(element) {
     }
 }
 
+function revertText(element) {
+    if(element.hasChildNodes()) {
+        element.childNodes.forEach(revertText);
+    } 
+
+    if(element.classList) {
+        for(let i = 0; i < element.classList.length; i++) {
+            if(element.classList.contains("rainbow")){
+                element.classList.remove("rainbow");
+            }
+        }
+    }
+}
+
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
     console.log(message.txt);
-    if(message.txt === "hello") {
+    isClicked = !isClicked;
+    console.log('isClicked', isClicked);
+    if(message.txt === "hello" && isClicked) {
         replaceText(document.body);
+    } else {
+        revertText(document.body);
     }
 }
