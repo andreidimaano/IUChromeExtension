@@ -27,4 +27,4 @@ Open chrome and type chrome://extensions. Then toggle developer mode on the top 
 
 Here's what it looks like:
 
-![iu](https://github.com/andreidimaano/IURainbowExtension/blob/main/726abc2c8dbc710b96ad511cc7477ade.gif)
+![iu](https://github.com/andreidimaano/IURainbowExtension/blob/main/IUGIF.gif)
