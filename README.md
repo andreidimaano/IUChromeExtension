@@ -3,6 +3,10 @@
 
 This extension searches for all instances of the string "IU" and creates a span element containing "IU" with a class rainbow. This class has a keyframe animation which changes the color of the IU text to rainbow.
 
+Update:
+
+This extension now also searches for all img and replaces the src with an image of IU.
+
 
 
 
@@ -28,3 +32,4 @@ Open chrome and type chrome://extensions. Then toggle developer mode on the top 
 Here's what it looks like:
 
 ![iu](https://github.com/andreidimaano/IURainbowExtension/blob/main/IUGIF.gif)
+![iu](https://github.com/andreidimaano/IURainbowExtension/blob/main/IUexample.png)

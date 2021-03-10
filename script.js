@@ -1,5 +1,24 @@
-// replaceText(document.body)
 let isClicked = false;
+let filenames = [
+    "IU.jpg",
+    "IU1.jpg",
+    "IU2.jpg",
+    "IU3.jpg",
+    "IU4.jpg",
+    "IU5.jpg"
+];
+
+function replaceImg(){
+    let imgs = document.getElementsByTagName('img');
+    
+    for (imgElt of imgs) {
+        let r = Math.floor(Math.random() * filenames.length);
+        let file = 'IUimg/' + filenames[r];
+        let url = chrome.extension.getURL(file);
+        imgElt.src = url;
+        console.log(url);
+    }
+}
 
 function replaceText(element) {
     if(element.hasChildNodes()) {
@@ -34,7 +53,8 @@ function revertText(element) {
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
-    console.log(message.txt);
+    replaceImg();
+
     isClicked = !isClicked;
     console.log('isClicked', isClicked);
     if(message.txt === "hello" && isClicked) {
