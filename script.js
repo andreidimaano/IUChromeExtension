@@ -1,4 +1,4 @@
-replaceText(document.body)
+// replaceText(document.body)
 
 function replaceText(element) {
     if(element.hasChildNodes()) {
@@ -6,7 +6,6 @@ function replaceText(element) {
         //text elements have no child nodes
     } else if (element.nodeType === Text.TEXT_NODE) {
         if(element.textContent.toLowerCase().includes('iu')) {
-            console.log('match', element.textContent);
             let newElement = document.createElement('span');
             newElement.innerHTML = element.textContent.replace(/(iu)/gi, 
             '<span class="rainbow">$1</span>')
@@ -14,5 +13,14 @@ function replaceText(element) {
             // element.parentElement.remove();
         }
         // element.textContent = element.textContent.replace(/coronavirus/gi, 'poopy woopy');
+    }
+}
+
+chrome.runtime.onMessage.addListener(gotMessage);
+
+function gotMessage(message, sender, sendResponse) {
+    console.log(message.txt);
+    if(message.txt === "hello") {
+        replaceText(document.body);
     }
 }
