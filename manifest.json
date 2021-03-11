@@ -11,7 +11,7 @@
             "exclude_matches": [
                 "*://*.google.com/*"
             ],
-            "js": ["script.js"],
+            "js": ["p5.js", "sketch.js", "script.js"],
             "css": ["styles.css"]
         }
     ],
