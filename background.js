@@ -4,7 +4,7 @@ chrome.browserAction.onClicked.addListener(buttonClicked);
 
 function buttonClicked (tab) {
     let msg = {
-        txt: "hello"
+        txt: "button"
     }
     chrome.tabs.sendMessage(tab.id, msg);
 }

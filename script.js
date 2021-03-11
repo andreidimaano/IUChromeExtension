@@ -16,7 +16,6 @@ function replaceImg(){
         let file = 'IUimg/' + filenames[r];
         let url = chrome.extension.getURL(file);
         imgElt.src = url;
-        console.log(url);
     }
 }
 
@@ -30,9 +29,7 @@ function replaceText(element) {
             newElement.innerHTML = element.textContent.replace(/(iu)/gi, 
             '<span class="rainbow">$1</span>')
             element.replaceWith(newElement)
-            // element.parentElement.remove();
         }
-        // element.textContent = element.textContent.replace(/coronavirus/gi, 'poopy woopy');
     }
 }
 
@@ -50,14 +47,39 @@ function revertText(element) {
     }
 }
 
+function iuText(paragraphs) {
+    
+    for( p of paragraphs) {
+        // p.innerHTML = message.txt;
+        let paragraph = p.textContent.split(" ");
+
+        // console.log(paragraph)
+        // console.log(paragraph.length);
+        let newString = "";
+        for(let i = 0; i < paragraph.length; i++) {
+            newString = newString.concat("IU <3");
+            if(i != paragraph.length - 1) {
+                newString = newString.concat(" ");
+            }
+        }
+
+        console.log(newString)
+
+        p.innerHTML = newString;
+    }
+}
+
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
+    if(message.txt != "button") {
+        let paragraphs = document.getElementsByTagName('p');
+        iuText(paragraphs);
+    }
+    
     replaceImg();
-
     isClicked = !isClicked;
-    console.log('isClicked', isClicked);
-    if(message.txt === "hello" && isClicked) {
+    if(message.txt === "button" && isClicked) {
         replaceText(document.body);
     } else {
         revertText(document.body);
