@@ -31,5 +31,5 @@ Open chrome and type chrome://extensions. Then toggle developer mode on the top 
 
 Here's what it looks like:
 
-![iu](https://github.com/andreidimaano/IUChromeExtension/tree/main/IUimgIUGIF.gif)
-![iu](https://github.com/andreidimaano/IUChromeExtension/tree/main/IUimgexample.png)
+![iu](https://github.com/andreidimaano/IUChromeExtension/tree/main/IUimg/IUGIF.gif)
+![iu](https://github.com/andreidimaano/IUChromeExtension/tree/main/IUimg/example.png)
