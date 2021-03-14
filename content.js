@@ -1,4 +1,19 @@
 let isClicked = false;
+let gotMessage = (message, sender, sendResponse) => {
+    replaceImg();
+    isClicked = !isClicked;
+    if(message.txt === "button" && isClicked) {
+        colorText(document.body);
+    } else {
+        unColorText(document.body);
+    }
+
+    if(message.txt != "button") {
+        let paragraphs = document.getElementsByTagName('p');
+        iuText(paragraphs);
+    }
+}
+
 let filenames = [
     "IU.jpg",
     "IU1.jpg",
@@ -8,20 +23,9 @@ let filenames = [
     "IU5.jpg"
 ];
 
-function replaceImg(){
-    let imgs = document.getElementsByTagName('img');
-    
-    for (imgElt of imgs) {
-        let r = Math.floor(Math.random() * filenames.length);
-        let file = 'IUimg/' + filenames[r];
-        let url = chrome.extension.getURL(file);
-        imgElt.src = url;
-    }
-}
-
-function replaceText(element) {
+let colorText = (element) => {
     if(element.hasChildNodes()) {
-        element.childNodes.forEach(replaceText);
+        element.childNodes.forEach(colorText);
         //text elements have no child nodes
     } else if (element.nodeType === Text.TEXT_NODE) {
         if(element.textContent.toLowerCase().includes('iu')) {
@@ -33,9 +37,21 @@ function replaceText(element) {
     }
 }
 
-function revertText(element) {
+let replaceImg = () => {
+    let imgs = document.getElementsByTagName('img');
+    for (imgElt of imgs) {
+        // let r = Math.floor(Math.random() * filenames.length);
+        // let file = 'IUimg/' + filenames[r];
+        // let url = chrome.extension.getURL(file);
+        // imgElt.src = url;
+        imgElt.src = 'https://iu.wonder.im/images/profile';
+    }
+    
+}
+
+let unColorText = (element) => {
     if(element.hasChildNodes()) {
-        element.childNodes.forEach(revertText);
+        element.childNodes.forEach(unColorText);
     } 
 
     if(element.classList) {
@@ -47,7 +63,7 @@ function revertText(element) {
     }
 }
 
-function iuText(paragraphs) {
+let iuText = (paragraphs) => {
     
     for( p of paragraphs) {
         // p.innerHTML = message.txt;
@@ -70,18 +86,3 @@ function iuText(paragraphs) {
 }
 
 chrome.runtime.onMessage.addListener(gotMessage);
-
-function gotMessage(message, sender, sendResponse) {
-    if(message.txt != "button") {
-        let paragraphs = document.getElementsByTagName('p');
-        iuText(paragraphs);
-    }
-    
-    replaceImg();
-    isClicked = !isClicked;
-    if(message.txt === "button" && isClicked) {
-        replaceText(document.body);
-    } else {
-        revertText(document.body);
-    }
-}
