@@ -11,16 +11,16 @@
             "exclude_matches": [
                 "*://*.google.com/*"
             ],
-            "js": ["script.js"],
+            "js": ["test/script.js"],
             "css": ["styles.css"]
         }
     ],
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["test/background.js"]
     },
-    "permissions": ["tabs"],
     "browser_action": {
         "default_icon": "IUimg/IU.png",
+        "default_popup": "sketch/index.html",
         "default_title": "IU will say something"
     }
 }
